@@ -2,14 +2,14 @@ import { User } from "../../model/User";
 import { IUsersRepository } from "../../repositories/IUsersRepository";
 
 interface IRequest {
-  user_id: string;
+  email: string;
 }
 
-class ShowUserProfileUseCase {
+class ShowUserByEmailUseCase {
   constructor(private usersRepository: IUsersRepository) {}
 
-  execute({ user_id }: IRequest): User {
-    const User = this.usersRepository.findById(user_id); //<< It will return the correct user
+  execute({ email }: IRequest): User {
+    const User = this.usersRepository.findByEmail(email); //<< It will return the correct user
     if(!User){
       throw new Error("User does not exist");
     }
@@ -17,4 +17,4 @@ class ShowUserProfileUseCase {
   }
 }
 
-export { ShowUserProfileUseCase };
+export { ShowUserByEmailUseCase };
